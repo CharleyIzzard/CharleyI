@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingUpandDown4 : MonoBehaviour
+{
+    public float Speed = 4;
+
+    void Update()
+    {
+        if (Input.GetKey("w"))
+        {
+            transform.Translate(Vector3.up * (Time.deltaTime * Speed));
+        }
+        if (Input.GetKey("s"))
+        {
+            transform.Translate(Vector3.down * (Time.deltaTime * Speed));
+        }
+    }
+}
