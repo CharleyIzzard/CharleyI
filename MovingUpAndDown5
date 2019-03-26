@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingUpandDown6 : MonoBehaviour
+{
+
+    private Vector3 Top;
+    private Vector3 Middle;
+    private Vector3 Bottom;
+
+    void Awake ()
+    {
+        Top = new Vector3(transform.position.x, 10, transform.position.z);
+        Middle = new Vector3(transform.position.x, 5, transform.position.z);
+        Bottom = new Vector3(transform.position.x, 0, transform.position.z);
+    }
+	
+	void Update ()
+    {
+        if (Input.GetKey("w"))
+        {
+            if (transform.position.y >= 5)
+            {
+                transform.position += Top * Time.deltaTime;
+            }
+            else if (transform.position.y >= 0)
+            {
+                transform.position += Middle * Time.deltaTime;
+            }
+            else if (transform.position.y == 10)
+            {
+                //play animation
+            }
+        }
+        if (Input.GetKey("s"))
+        {
+            if (transform.position.y <= 10)
+            {
+                transform.position += Middle * Time.deltaTime;
+            }
+            else if (transform.position.y <= 5)
+            {
+                transform.position += Bottom * Time.deltaTime;
+            }
+            else if (transform.position.y == 0)
+            {
+                //play animation
+            }
+        }
+    }
+}
