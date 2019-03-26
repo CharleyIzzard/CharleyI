@@ -1,0 +1,84 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingUpandDown5 : MonoBehaviour
+{
+    public float Speed = 1.0f;
+    private float StartTime;
+
+    private Vector3 Top;
+    private Vector3 Middle;
+    private Vector3 Bottom;
+
+    //private float JourneyLength;
+    private float JourneyLengthUp10;
+    private float JourneyLengthup5;
+    private float JourneyLengthdown5;
+    private float JourneyLengthdown0;
+
+    private void Awake()
+    {
+        Top = new Vector3(transform.position.x, 10, transform.position.z);
+        Middle = new Vector3(transform.position.x, 5, transform.position.z);
+        Bottom = new Vector3(transform.position.x, 0, transform.position.z);
+    }
+
+    void Start ()
+    {
+        StartTime = Time.time;
+        //JourneyLength = Vector3.Distance
+        //Up
+        JourneyLengthUp10 = Vector3.Distance(new Vector3(transform.position.x, 5, transform.position.z), new Vector3(transform.position.x, 10, transform.position.z));
+        JourneyLengthup5 = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(transform.position.x, 5, transform.position.z));
+        //Down
+        JourneyLengthdown5 = Vector3.Distance(new Vector3(transform.position.x, 10, transform.position.z), new Vector3(transform.position.x, 5, transform.position.z));
+        JourneyLengthdown0 = Vector3.Distance(new Vector3(transform.position.x, 5, transform.position.z), new Vector3(transform.position.x, 0, transform.position.z));
+	}
+
+	void Update ()
+    {
+        float distCovered = (Time.time - StartTime) * Speed;
+
+        //float FracJourney = distCovered / JourneyLength;
+
+        float FracJourneyDown0 = distCovered / JourneyLengthdown0;
+        float FracJourneyDown5 = distCovered / JourneyLengthdown5;
+        float FracJourneyUp5 = distCovered / JourneyLengthup5;
+        float FracJourneyUp10 = distCovered / JourneyLengthUp10;
+
+
+        //Move UP
+        if (Input.GetKeyDown("w"))
+        {
+            if (transform.position.y == 10)
+            {
+                //play animation
+            }
+            else if (transform.position.y >= 5)
+            {
+                transform.position = Vector3.Lerp(Middle, Top, FracJourneyUp10);
+            }
+            else if (transform.position.y >= 0)
+            {
+                transform.position = Vector3.Lerp(Bottom, Middle, FracJourneyUp5);
+            }
+        }
+        //Move DOWN
+        if (Input.GetKeyDown("s"))
+        {
+            if (transform.position.y <= 10)
+            {
+                transform.position = Vector3.Lerp(Top, Middle, FracJourneyDown5);
+            }
+            else if (transform.position.y <= 5)
+            {
+                transform.position = Vector3.Lerp(Middle, Bottom, FracJourneyDown0);
+            }
+            else if (transform.position.y == 0)
+            {
+                //Play Animation
+            }
+        }
+    }
+}
