@@ -2,44 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingUpandDown2 : MonoBehaviour
+public class MovingUpandDown3 : MonoBehaviour
 {
-    private float HeightChangeSpeed = 5.0f;
-
     void Update()
     {
-
-        //Moving up
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKey("w"))
         {
             if (transform.position.y == 10)
+            { }
+
+            else if (transform.position.y >= 5)
             {
-                //play animation that I haven't made yet
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 10, transform.position.z),0.1f);
             }
-            else if (transform.position.y == 5)
+
+            else if (transform.position.y >= 0)
             {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 10, transform.position.z), HeightChangeSpeed);
-            }
-            else if (transform.position.y == 0)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 5, transform.position.z), HeightChangeSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 5, transform.position.z), 0.1f);
             }
         }
-
-        //Moving down
         if (Input.GetKeyDown("s"))
         {
-            if (transform.position.y == 10)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 5, transform.position.z), HeightChangeSpeed);
-            }
+            if (transform.position.y == 0)
+            { }
+
             else if (transform.position.y == 5)
             {
-                transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x, 0, transform.position.z), HeightChangeSpeed);
+                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             }
-            else if (transform.position.y == 0)
+
+            else if (transform.position.y == 10)
             {
-                //play animation that I haven't made yet
+                transform.position = new Vector3(transform.position.x, 5, transform.position.z);
             }
         }
     }
