@@ -17,7 +17,7 @@ public class Move : MonoBehaviour
 	
 	void Update ()
 	{
-        if (speed <= 100)
+        if (speed <= MaxSpeed)
         {
             speed += Time.deltaTime * acceleration;
             rb.velocity = -transform.forward * speed;
