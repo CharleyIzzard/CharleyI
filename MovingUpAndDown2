@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingUpandDown2 : MonoBehaviour
+{
+    private float HeightChangeSpeed = 5.0f;
+
+    void Update()
+    {
+
+        //Moving up
+        if (Input.GetKeyDown("w"))
+        {
+            if (transform.position.y == 10)
+            {
+                //play animation that I haven't made yet
+            }
+            else if (transform.position.y == 5)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 10, transform.position.z), HeightChangeSpeed);
+            }
+            else if (transform.position.y == 0)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 5, transform.position.z), HeightChangeSpeed);
+            }
+        }
+
+        //Moving down
+        if (Input.GetKeyDown("s"))
+        {
+            if (transform.position.y == 10)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 5, transform.position.z), HeightChangeSpeed);
+            }
+            else if (transform.position.y == 5)
+            {
+                transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x, 0, transform.position.z), HeightChangeSpeed);
+            }
+            else if (transform.position.y == 0)
+            {
+                //play animation that I haven't made yet
+            }
+        }
+    }
+}
