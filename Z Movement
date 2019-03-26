@@ -7,7 +7,7 @@ public class Move : MonoBehaviour
 	private Rigidbody rb; 
 	public float speed;
 	public float acceleration; 
-
+	public float MaxSpeed = 100;
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -22,7 +22,7 @@ public class Move : MonoBehaviour
             speed += Time.deltaTime * acceleration;
             rb.velocity = -transform.forward * speed;
         }
-        else if (speed >= 100)
+        else if (speed >= MaxSpeed)
         {
             //put like fire or someshit idk
         }
