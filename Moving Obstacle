@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingObstacle : MonoBehaviour {
+    private bool Direction;
+    public float Speed = 4f;
+    public float MaxHeight = 12f;
+    public float MinHeight = -1f;
+
+    void Update ()
+    {
+        if (transform.position.y <= MinHeight)
+        {
+            Direction = true;
+        }
+        if (transform.position.y >= MaxHeight)
+        {
+            Direction = false;
+        }
+
+        if (Direction == true)
+            {
+            transform.Translate(Vector3.up * (Time.deltaTime * Speed));
+            }
+
+        if (Direction == false)
+            {
+            transform.Translate(Vector3.down * (Time.deltaTime * Speed));
+            }
+    }
+}
