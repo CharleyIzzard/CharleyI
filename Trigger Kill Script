@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class KillScript : MonoBehaviour
+{
+    private void OnTriggerEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
+        }
+    }
+}
