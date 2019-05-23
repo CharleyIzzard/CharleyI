@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class YMovement : MonoBehaviour
+{
+    
+
+    public float DestinationY = 1;// position.y
+    public int Lane; // Lane 0 = 0 Lane 1 = 5 Lane 2 = 10
+    public float spd = 4f;
+    public float lane0 = 0;
+    public float lane1 = 6;
+    public float lane2 = 12;
+
+    void Awake()
+    {
+        //Sets target Y position with lanes
+        if (Lane == 0) {DestinationY = lane0;}
+        else if (Lane == 1) {DestinationY = lane1;}
+        else if (Lane == 2) {DestinationY = lane2;}
+
+        transform.position = new Vector3(transform.position.x, DestinationY, transform.position.z);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.W)) //pressing W moves to lane above
+        {
+            Lane++;
+            if (Lane > 2) { Lane = 2; }
+        }
+
+        if (Input.GetKeyDown(KeyCode.S)) //pressing S moves to lane above
+        {
+            Lane--;
+            if (Lane < 0) { Lane = 0; }
+        }
+
+        //Sets target Y position with lanes
+        if (Lane == 0) {DestinationY = lane0;}
+        else if (Lane == 1) {DestinationY = lane1;}
+        else if (Lane == 2) {DestinationY = lane2;}
+
+        //actually updates position
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, DestinationY, transform.position.z), spd);
+    }
+}
